@@ -1,3 +1,4 @@
+import { SingInButton } from "./components/sing-in-button/SingInButton";
 import Styles from "./Style.module.scss";
 
 export const Header: React.FC = () => {
@@ -10,6 +11,8 @@ export const Header: React.FC = () => {
           <a className={Styles.active}>Home</a>
           <a>Posts</a>
         </nav>
+
+        <SingInButton />
       </div>
     </header>
   );
