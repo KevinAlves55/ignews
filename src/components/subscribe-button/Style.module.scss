@@ -1,0 +1,28 @@
+.subscribeButton {
+  height: 4rem;
+  width: 260px;
+  border: 0;
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+  background-color: var(--yellow-500);
+  color: var(--gray-900);
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: filter 0.2s;
+  -webkit-transition: filter 0.2s;
+  -moz-transition: filter 0.2s;
+  -ms-transition: filter 0.2s;
+  -o-transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+    -webkit-filter: brightness(0.8);
+  }
+}
