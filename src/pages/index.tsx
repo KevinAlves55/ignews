@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 import Head from 'next/head';
 import { SubscribeButton } from '../components/subscribe-button/SubscribeButton';
 import { stripe } from "../services/Stripe";
@@ -11,6 +11,13 @@ interface IHomeProps {
     amount: number;
   }
 }
+
+/**
+ * Existem 3 formas de fazer uma chamada a API no react
+ * - Client-side: Para qualquer outro caso a não ser os requisitos abaixo
+ * - Server-side: Quando precisamos dos dados em tempo real(SSR)
+ * - Static: Casos que eu queira compartilhar o mesmo HTML para várias pessoas(SSG)
+*/
 
 export default function Home({ product }: IHomeProps) {
   return (
@@ -36,7 +43,7 @@ export default function Home({ product }: IHomeProps) {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve("price_1Lui3dHI2CZCD5DPtaZfTW2q");
 
   const product = {
@@ -50,6 +57,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       product
-    }
+    },
+    revalidate: 60 * 60 * 24, // 24 hours
   }
 };
