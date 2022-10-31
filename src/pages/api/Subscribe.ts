@@ -9,7 +9,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const stripeCustomer = await stripe.customers.create({
       email: session.user.email,
-      // metadata
     })
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
