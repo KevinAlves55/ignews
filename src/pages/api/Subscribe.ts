@@ -50,21 +50,34 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
+      // 
       customer: customerId,
+
+      // Métodos de pagamento que vamos ter
       payment_method_types: ["card"],
+
+      // Informa se o endereço deve ser obrigatória
       billing_address_collection: "required",
+
+      // Informa os itens que podem ser comprados
       line_items: [
         { price: "price_1Lui3dHI2CZCD5DPtaZfTW2q", quantity: 1 }
       ],
+
+      // Se o pagamento vai ser recorrente ou apenas uma vez
       mode: "subscription",
+
+      // Informa se terá cumpom de desconto
       allow_promotion_codes: true,
+
+      // Informar as url necessárias para redirecionamento
       success_url: process.env.STRIPE_SUCCESS_URL,
       cancel_url: process.env.STRIPE_CANCEL_URL
     })
 
     return res.status(200).json({ sessionId: stripeCheckoutSession.id })
   } else {
-    res.setHeader("Allow", "POST")
-    res.status(405).end("Method not allowed")
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method not allowed");
   }
 };
