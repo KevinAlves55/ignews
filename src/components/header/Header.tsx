@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { ActiveLink } from "../active-link/ActiveLink";
 import { SingInButton } from "./components/sing-in-button/SingInButton";
 import Styles from "./Style.module.scss";
 
@@ -9,12 +11,12 @@ export const Header: React.FC = () => {
         <img src="/images/logo.svg" alt="ig.news" />
 
         <nav>
-          <Link href="/">
-            <a className={Styles.active}>Home</a>
-          </Link>
-          <Link href="/posts">
+          <ActiveLink activeClassName={Styles.active} href="/">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink activeClassName={Styles.active} href="/posts">
             <a>Posts</a>
-          </Link>
+          </ActiveLink>
         </nav>
 
         <SingInButton />
