@@ -21,7 +21,7 @@
 ### Features
 
 - [x] Realização de pagamento
-- [x] Cadastro de POSTS
+- [x] CRUD de POSTS pelo [Prismic.io](https://prismic.io/)
 - [x] Login com Github
 - [ ] Comentários
 
